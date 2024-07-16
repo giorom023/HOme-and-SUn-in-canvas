@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Combined Drawing: House and Sun</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+  }
+  canvas {
+    margin: 20px;
+    border: 1px solid black;
+  }
+</style>
+</head>
+<body>
+  <canvas id="combinedCanvas" width="900" height="500"></canvas>
+
+  <script>
+    const combinedCanvas = document.getElementById("combinedCanvas");
+    const ctx = combinedCanvas.getContext("2d");
+
+    //  sun
+    ctx.save(); 
+    ctx.translate(200, 150); 
+    ctx.beginPath();
+    ctx.arc(0, 0, 40, 0, 2 * Math.PI);
+    ctx.fillStyle = 'yellow';
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = 'orange';
+    ctx.stroke();
+    ctx.restore(); 
+
+    // Draw sun rays
+    const rays = [
+        { x1: 200, y1: 50, x2: 200, y2: -10 },
+        { x1: 270, y1: 80, x2: 330, y2: 50 },
+        { x1: 300, y1: 150, x2: 370, y2: 150 },
+        { x1: 270, y1: 220, x2: 330, y2: 280 },
+        { x1: 200, y1: 250, x2: 200, y2: 310 },
+        { x1: 130, y1: 220, x2: 70, y2: 280 },
+        { x1: 100, y1: 150, x2: 30, y2: 150 },
+        { x1: 130, y1: 80, x2: 70, y2: 50 },
+    ];
+
+    rays.forEach(ray => {
+        ctx.beginPath();
+        ctx.moveTo(ray.x1, ray.y1);
+        ctx.lineTo(ray.x2, ray.y2);
+        ctx.strokeStyle = 'orange';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    });
+
+    // house
+    ctx.save(); 
+    ctx.translate(400, 300); 
+
+    ctx.fillStyle = "gray";
+    ctx.fillRect(0, 0, 200, 200);
+
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(100, -100);
+    ctx.lineTo(200, 0);
+    ctx.closePath();
+    ctx.fillStyle = "red";
+    ctx.fill();
+
+    ctx.fillStyle = "darkgray";
+    ctx.fillRect(75, 100, 50, 100);
+
+    ctx.beginPath();
+    ctx.arc(90, 150, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = "black";
+    ctx.fill();
+
+    ctx.fillStyle = "white";
+    ctx.fillRect(15, 50, 50, 50);
+    ctx.strokeRect(15, 50, 50, 50);
+
+    ctx.beginPath();
+    ctx.moveTo(15, 75);
+    ctx.lineTo(65, 75);
+    ctx.moveTo(40, 50);
+    ctx.lineTo(40, 100);
+    ctx.stroke();
+
+    ctx.fillStyle = "white";
+    ctx.fillRect(120, 50, 50, 50);
+    ctx.strokeRect(120, 50, 50, 50);
+
+    ctx.beginPath();
+    ctx.moveTo(120, 75);
+    ctx.lineTo(170, 75);
+    ctx.moveTo(145, 50);
+    ctx.lineTo(145, 100);
+    ctx.stroke();
+
+    ctx.fillStyle = "brown";
+    ctx.fillRect(160, -70, 20, 50);
+
+    ctx.beginPath();
+    ctx.arc(210, 60, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = "yellow";
+    ctx.fill();
+
+    ctx.restore(); 
+  </script>
+</body>
+</html>
